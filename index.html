@@ -69,22 +69,23 @@ nav{
 }
 /* hiperrealistyczny zachód słońca nad Madrytem — zdjęcie z rooftopu + neonowy filtr marki */
 .hero-bg{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;
-  z-index:0;filter:saturate(1.25) contrast(1.05);
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;
+  z-index:0;filter:saturate(1.2) contrast(1.04);
 }
 .hero-tint{
   position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(185deg, rgba(255,197,51,.4) 0%, rgba(255,122,69,.42) 40%, rgba(224,20,138,.48) 100%);
+  background:linear-gradient(185deg, rgba(255,197,51,.16) 0%, rgba(255,122,69,.2) 45%, rgba(224,20,138,.3) 100%);
   mix-blend-mode:multiply;
 }
 .hero-veil{
   position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    linear-gradient(100deg, rgba(255,247,240,.96) 0%, rgba(255,247,240,.88) 38%, rgba(255,247,240,.42) 62%, rgba(255,247,240,.08) 100%),
-    linear-gradient(0deg, rgba(255,247,240,.55) 0%, transparent 30%);
+    linear-gradient(100deg, rgba(255,247,240,.94) 0%, rgba(255,247,240,.85) 38%, rgba(255,247,240,.35) 62%, rgba(255,247,240,.02) 100%),
+    linear-gradient(0deg, rgba(255,247,240,.5) 0%, transparent 28%);
 }
 @media(max-width:900px){
-  .hero-veil{background:linear-gradient(180deg, rgba(255,247,240,.94) 0%, rgba(255,247,240,.86) 55%, rgba(255,247,240,.55) 100%)}
+  .hero-bg{object-position:center 30%}
+  .hero-veil{background:linear-gradient(180deg, rgba(255,247,240,.9) 0%, rgba(255,247,240,.78) 45%, rgba(255,247,240,.3) 100%)}
 }
 .hero-sun{
   position:absolute;top:-140px;right:-90px;width:420px;height:420px;border-radius:50%;
@@ -167,7 +168,6 @@ nav{
   ▶▶▶ PODMIANA NA GOTOWY PREQUEL:
   usuń zawartość .prequel-frame i wklej iframe:
   <iframe src="https://www.youtube.com/embed/TWOJE_ID" title="Prequel wyjazdu"
-  <iframe src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Prequel wyjazdu"
           style="position:absolute;inset:0;width:100%;height:100%;border:0" allowfullscreen></iframe>
 */
 .play-btn{
@@ -256,7 +256,31 @@ h2{font-size:clamp(2.4rem,5vw,3.8rem);text-transform:uppercase;color:var(--ink);
   background:var(--pink);color:var(--white);border-radius:999px;padding:9px 20px;
   font-weight:800;font-size:.8rem;letter-spacing:.05em;
   box-shadow:0 8px 20px rgba(224,20,138,.3);
+  transition:transform .2s, box-shadow .2s;
 }
+.addr:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(224,20,138,.4)}
+/* kolaż zdjęć hostelu */
+.hostel-collage{display:grid;gap:12px;margin-bottom:16px}
+.hc-row{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}
+@media(max-width:480px){.hc-row{grid-template-columns:1fr 1fr}}
+.hc-item{
+  position:relative;border-radius:18px;overflow:hidden;
+  border:4px solid var(--white);
+  box-shadow:0 12px 30px rgba(224,20,138,.18);
+  transition:transform .25s;
+}
+.hc-item:hover{transform:translateY(-4px) rotate(-.5deg)}
+.hc-item img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:saturate(1.1)}
+.hc-item.big{aspect-ratio:16/10;transform:rotate(-.6deg)}
+.hc-item.big:hover{transform:translateY(-4px) rotate(0deg)}
+.hc-row .hc-item{aspect-ratio:4/3}
+.hc-item .sp-cap{
+  position:absolute;left:12px;bottom:12px;z-index:2;
+  background:var(--pink);color:var(--white);font-family:'Bebas Neue';
+  font-size:1.05rem;letter-spacing:.06em;padding:5px 14px;border-radius:9px;transform:rotate(-1.5deg);
+  box-shadow:0 5px 14px rgba(122,16,80,.35);
+}
+.hc-item::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 60%,rgba(122,16,80,.28))}
 /* duże zdjęcie sekcji */
 .sell-photo{
   position:relative;border-radius:26px;overflow:hidden;min-height:340px;
@@ -502,10 +526,10 @@ footer .small a{color:rgba(255,255,255,.9)}
 
 <header class="hero" id="top">
   <img class="hero-bg"
-       src="https://commons.wikimedia.org/wiki/Special:FilePath/Madrid%20(Spain).jpg?width=1920"
-       alt="Zachód słońca nad dachami Madrytu — widok z rooftopu Edificio España na Gran Vía"
+       src="https://commons.wikimedia.org/wiki/Special:FilePath/Gran%20Via%2C%20Madrid%2C%20at%20night%20II.jpg?width=1920"
+       alt="Gran Vía w Madrycie o zmierzchu — neony i wieczorne niebo"
        fetchpriority="high"
-       onerror="this.remove()">
+       onerror="if(!this.dataset.f){this.dataset.f=1;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Atardecer%20en%20Madrid%20(28306896586).jpg?width=1920'}else if(this.dataset.f==1){this.dataset.f=2;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20at%20Templo%20de%20Debod.jpg?width=1920'}else{this.remove()}">
   <div class="hero-tint" aria-hidden="true"></div>
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-sun" aria-hidden="true"></div>
@@ -643,13 +667,32 @@ footer .small a{color:rgba(255,255,255,.9)}
           <span class="pill t">🍢 Serce La Latina</span>
           <span class="pill">🛋️ Bar + lounge dla ekipy</span>
         </div>
-        <span class="addr">📍 Calle Juanelo 24, La Latina, Madrid</span>
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&amp;query=OK+Hostel+Madrid%2C+Calle+Juanelo+24%2C+28012+Madrid" target="_blank" rel="noopener" style="text-decoration:none">📍 Calle Juanelo 24, La Latina, Madrid → otwórz w Google Maps</a>
       </div>
-      <div class="feat-tiles">
+      <div>
+        <div class="hostel-collage">
+          <div class="hc-item big">
+            <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAHcbp-SoZxQlBtGF1Kn-LXzjjfpsFfQvz4i83oH98ahRF6sUtEZcGUKeMo9UZCH7TKxs-W2A3tQP5xfqNcZToe1Pd56GE17mST95YW11gmGC3jghq6usaZpSRqFKch_Gp7BcVG1=w1400-k-no"
+                 alt="OK Hostel Madrid" loading="lazy" onerror="this.parentElement.remove()">
+            <span class="sp-cap">OK Hostel Madrid — nasz dom na 5 dni</span>
+          </div>
+          <div class="hc-row">
+            <div class="hc-item">
+              <img src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAGkbnfFOi-nPlA_wnV2v5tYB7E-qoqyqC-2Q9Yc8j39aTGCzpF3KKfm4bDfLN_8VmyfDARqZusDL-n-nLrnwix-ddxp8UHRHT675lYsGW0GuoNJSpeIuf4__5iuhqLFPRERbfVBMQ=w900-k-no"
+                   alt="Wnętrze OK Hostel Madrid" loading="lazy" onerror="this.parentElement.remove()">
+            </div>
+            <div class="hc-item">
+              <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmDgJUHahd5Onj3Vg_1JyAQcCN_u9dn8bswBJ-AUdeOCyiba2ixQavkyDDQ0hi_xLOmXG3TMGIqWGn830u2_SlzcKLq8RV_YR89P-DdfmX5ZPqXD72osqjOGHRu1lyxB7V_j89mM9xaTeNQ=w900-k-no"
+                   alt="OK Hostel Madrid — przestrzeń wspólna" loading="lazy" onerror="this.parentElement.remove()">
+            </div>
+          </div>
+        </div>
+        <div class="feat-tiles">
         <div class="feat"><div class="fe">🥐</div><h4>Śniadanie mistrzów</h4><p>Codzienny bufet, o którym goście piszą w recenzjach. Węgle przed treningiem? Załatwione.</p></div>
         <div class="feat"><div class="fe">📍</div><h4>Wszystko obok</h4><p>Plaza Mayor, Puerta del Sol, Gran Vía — wszędzie dojdziesz pieszo. Metro za rogiem.</p></div>
         <div class="feat"><div class="fe">🍢</div><h4>La Latina vibes</h4><p>Dzielnica tapas, flamenco i wieczorów, które nie chcą się kończyć. Wychodzisz z drzwi — jesteś w środku akcji.</p></div>
         <div class="feat"><div class="fe">🛏️</div><h4>Komfort po WOD-zie</h4><p>Wygodne łóżka, klimatyzacja, prywatne łazienki i przestrzeń wspólna, w której ekipa gra w bilard do późna.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -699,7 +742,7 @@ footer .small a{color:rgba(255,255,255,.9)}
     <p class="sec-sub">Trening. Miasto. Ekipa. — a to jest właśnie ta środkowa część. Pięć miejsc, które zaliczymy razem, i każde z nich wygląda jak kadr z naszego przyszłego filmu.</p>
     <div class="city-grid">
       <div class="city">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sunset%20at%20Templo%20de%20Debod.jpg?width=1200" alt="Zachód słońca przy Templo de Debod w Madrycie" loading="lazy" onerror="this.remove()">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Templo%20de%20Debot%2C%20en%20Madrid%20-%20Flickr%20-%20estebanjvr.jpg?width=1200" alt="Templo de Debod w Madrycie" loading="lazy" onerror="this.remove()">
         <div class="city-txt">
           <span class="ct-tag">☀ Najlepszy zachód słońca w mieście</span>
           <h3>Templo de Debod</h3>
@@ -804,7 +847,7 @@ footer .small a{color:rgba(255,255,255,.9)}
       <div class="dna-card"><div class="emoji">🩷</div><div class="k">Kolor</div><div class="v">Neonowy róż</div><div class="d">Nasz kolor. Nasza energia.</div></div>
       <div class="dna-card"><div class="emoji">🎵</div><div class="k">Nuta</div><div class="v">Reload</div><div class="d">Sebastian Ingrosso &amp; Tommy Trash</div></div>
       <div class="dna-card"><div class="emoji">🧴</div><div class="k">Zapach</div><div class="v">Nenuco</div><div class="d">Świeżość. Wakacje. Madryt.</div></div>
-      <div class="dna-card"><div class="emoji">🐕</div><div class="k">Pieseł</div><div class="v">Podenco Ibicenco</div><div class="d">Nasz pies. Nasz duch.</div></div>
+      <div class="dna-card"><div class="emoji">🐕</div><div class="k">Pieseł</div><div class="v">Pies z naszego logo</div><div class="d">Mastif w różowych okularach. Nasz pies. Nasz duch.</div></div>
     </div>
   </div>
 </section>
@@ -816,7 +859,7 @@ footer .small a{color:rgba(255,255,255,.9)}
   <p style="margin-top:14px;font-weight:600">Kilka dni. Setki wspomnień. Jedna ekipa. 🩷</p>
   <div class="small">
     New Dogs Camp Madrid Vol.1 · 7–11 października 2026<br>
-    Zdjęcia boxa: CrossFit Singular Box Madrid · Zdjęcia miasta i hero (rooftop Edificio España): Wikimedia Commons (CC)
+    Zdjęcia boxa: CrossFit Singular Box Madrid · Zdjęcia miasta i hero: Wikimedia Commons (CC) · Zdjęcia hostelu: OK Hostel Madrid (Google Maps)
   </div>
 </footer>
 
